@@ -7,7 +7,15 @@ if (element) {
 
 // Get the cards in the deck
 setTimeout(() => {
-    console.log('searching');
+
+    const url = chrome.runtime.getURL('collection.csv');
+    fetch(url)
+    .then((response) => {
+        console.log("Got response");
+        console.log(response.text());
+    });
+
+    // console.log('searching');
     let table = document.querySelector('#tab-arena > div > div > table[class="deck-view-deck-table"]')
     if (table) {
         let numbers = table.querySelectorAll('td[class="deck-col-qty"]');
@@ -16,7 +24,7 @@ setTimeout(() => {
         
         if (numbers && cardNames && arenaCosts) {
             for(i = 0; i < numbers.length; i++) {
-                console.log(numbers[i].innerHTML + " " + cardNames[i].innerHTML + " " + arenaCosts[i].innerHTML);
+                //console.log(numbers[i].innerHTML + " " + cardNames[i].innerHTML + " " + arenaCosts[i].innerHTML);
             }
         }
     }
