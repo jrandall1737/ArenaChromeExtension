@@ -1,7 +1,7 @@
 {
-    "name": "Getting Started Example",
+    "name": "MTG Goldfish Collection Filter",
     "version": "1.1",
-    "description": "Build an Extension!",
+    "description": "When you select a deck on MTG Goldfish, this will update the arena costs to match the cards in your collection.",
     "permissions": [
         "activeTab",
         "declarativeContent",
@@ -24,7 +24,8 @@
             "all_frames": true,
             "run_at": "document_idle",
             "js": [
-                "action.js"
+                "action.js",
+                "CardCollection.js"
             ]
         }
     ],
