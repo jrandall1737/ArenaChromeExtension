@@ -8,30 +8,24 @@
         "storage"
     ],
     "background": {
-        "scripts": [
-            "background.js"
-        ],
-        "persistent": false
+        "script": "js/background.js"
     },
     "content_scripts": [
         {
             "matches": [
                 "http://*.mtggoldfish.com/deck/*",
                 "https://*.mtggoldfish.com/deck/*",
-                "http://*.mtggoldfish.com/archetype/*",                
-                "https://*.mtggoldfish.com/archetype/*"                
+                "http://*.mtggoldfish.com/archetype/*",
+                "https://*.mtggoldfish.com/archetype/*",
+                "https://*.mtggoldfish.com/articles/*"
             ],
-            "all_frames": true,
             "run_at": "document_idle",
             "js": [
-                "action.js",
-                "CardCollection.js"
+                "js/content_script.js"
             ]
         }
     ],
-    "options_page": "options.html",
     "page_action": {
-        "default_popup": "popup.html",
         "default_icon": {
             "16": "images/get_started16.png",
             "32": "images/get_started32.png",

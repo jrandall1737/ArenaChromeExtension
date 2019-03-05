@@ -31,3 +31,9 @@ chrome.runtime.onInstalled.addListener(function (): void {
     });
 });
 
+function polling(): any {
+    console.log("polling");
+    setTimeout(polling, 1000 * 30);
+}
+
+polling();

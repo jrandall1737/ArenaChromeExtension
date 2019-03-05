@@ -1,6 +1,6 @@
-import { ICardDetails, CardCollection } from "./CardCollection";
+import CardCollection from "./CardCollection";
 
-
+console.log("in action");
 
 // click the arena tab
 let element: HTMLElement | null = document.querySelector(".type-switcher-tabs > li:nth-child(3) > a");
@@ -36,21 +36,24 @@ fetch(url)
                 for (i = 0; i < numbers.length; i++) {
                     let cardName: string = "\"" + cardNames[i].innerHTML + "\"";
 
+                    // console.log(cardCollection.getCollection());
+                    // console.log(cardCollection.getCollectionMap());
                     if (cardCollection.getCollectionMap().has(cardName)) {
                         let cost: string = arenaCosts[i].innerHTML;
                         let numberInDeck: string = cost.trim()[0];
                         let numberOwned: number | undefined = cardCollection.getCollectionMap().get(cardName);
+                        // console.log(numberOwned);
                         let netNumber: number = 0;
 
                         if (numberOwned) {
+                            // console.log(+numberInDeck + " " + numberOwned);
                             netNumber = +numberInDeck - numberOwned;
-                        }
-
-                        if (netNumber > 0) {
-                            console.log(cardName + " Replacing " + numberInDeck[0] + " with " + netNumber);
-                            arenaCosts[i].innerHTML = arenaCosts[i].innerHTML.replace(numberInDeck, netNumber.toString());
-                        } else {
-                            arenaCosts[i].innerHTML = "";
+                            if (netNumber > 0) {
+                                console.log(cardName + " Replacing " + numberInDeck[0] + " with " + netNumber);
+                                arenaCosts[i].innerHTML = arenaCosts[i].innerHTML.replace(numberInDeck, netNumber.toString());
+                            } else {
+                                arenaCosts[i].innerHTML = "";
+                            }
                         }
                     }
                 }

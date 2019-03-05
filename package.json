@@ -4,8 +4,10 @@
   "description": "",
   "main": "action.js",
   "scripts": {
-    "build": "tsc && cpx collection.csv ./dist/ && cpx manifest.json ./dist/ && cpx ./src/*.html ./dist/ && cpx ./images/* ./dist/images/ ",
+    "build": "tsc && npm run move",
     "clean": "rimraf dist",
+    "move": "cpx collection.csv ./dist/ && cpx manifest.json ./dist/ && cpx ./src/*.html ./dist/ && cpx ./images/* ./dist/images/ ",
+    "pack": "webpack --config webpack/webpack.prod.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,6 +23,11 @@
   "devDependencies": {
     "@types/chrome": "0.0.81",
     "cpx": "^1.5.0",
-    "rimraf": "^2.6.3"
+    "rimraf": "^2.6.3",
+    "ts-loader": "~5.0.0",
+    "typescript": "^3.3.3",
+    "webpack": "~4.17.2",
+    "webpack-cli": "~3.1.0",
+    "webpack-merge": "~4.1.4"
   }
 }

@@ -1,23 +1,17 @@
-export interface ICardDetails {
+interface ICardDetails {
     cardName: string;
     numberOwned: number;
     rarity: string;
-    cardNumber: number;
+    setNumber: number;
 }
 
-export class CardCollection {
+export default class CardCollection {
     private collection: ICardDetails[] = [];
     private collectionMap = new Map();
 
     constructor() {
         return this;
     }
-
-    // constructor(collection: string[]) {
-    //     collection.forEach(cardLine => {
-    //         this.addCardToCollection(this.parseCardLine(cardLine));
-    //     });
-    // }
 
     public getCollection(): ICardDetails[] {
         return this.collection;
@@ -47,18 +41,20 @@ export class CardCollection {
                 }
                 this.collectionMap.set(card.cardName, totalCards);
             } else {
-                this.collectionMap.set(card.cardName, card.cardNumber);
+                this.collectionMap.set(card.cardName, card.numberOwned);
             }
         });
     }
 
     private parseCardLine(line: string): ICardDetails {
         let cardLineArray: string[] = line.split(",");
+        let myNumberOwned: number = Number.parseInt(cardLineArray[1], 10);
+        let mySetNumber: number = Number.parseInt(cardLineArray[1], 10);
         const cardDetails: ICardDetails = {
             cardName: cardLineArray[0],
-            numberOwned: +cardLineArray[1],
+            numberOwned:  myNumberOwned,
             rarity: cardLineArray[2],
-            cardNumber: +cardLineArray[3]
+            setNumber: mySetNumber
         };
 
         return cardDetails;
